@@ -138,33 +138,33 @@ val White = Color(0xFFFFFFFF)
 val Black = Color(0xFF000000)
 
 // 💎 Accent Colors for Trakify branding
-val TrakifyBlue = Color(0xFF2196F3)
-val TrakifyGreen = Color(0xFF4CAF50)
-val TrakifyOrange = Color(0xFFFF9800)
-val TrakifyPurple = Color(0xFF673AB7)
-val TrakifyRed = Color(0xFFF44336)
-val TrakifyTeal = Color(0xFF009688)
+val Blue = Color(0xFF2196F3)
+val Green = Color(0xFF4CAF50)
+val Orange = Color(0xFFFF9800)
+val Purple = Color(0xFF673AB7)
+val Red = Color(0xFFF44336)
+val Teal = Color(0xFF009688)
 
-// 🎨 Semantic Colors for Trakify
-val TrakifyPrimary = Color(0xFF2196F3)
-val TrakifySecondary = Color(0xFF4CAF50)
-val TrakifyAccent = Color(0xFFFF9800)
-val TrakifySuccess = Color(0xFF4CAF50)
-val TrakifyWarning = Color(0xFFFF9800)
-val TrakifyError = Color(0xFFF44336)
-val TrakifyInfo = Color(0xFF2196F3)
+// 🎨 Semantic Colors for
+val Primary = Color(0xFF2196F3)
+val Secondary = Color(0xFF4CAF50)
+val Accent = Color(0xFFFF9800)
+val Success = Color(0xFF4CAF50)
+val Warning = Color(0xFFFF9800)
+val Error = Color(0xFFF44336)
+val Info = Color(0xFF2196F3)
 
 // 🌓 Dark Theme Colors
-val TrakifySurfaceDark = Color(0xFF121212)
-val TrakifyBackgroundDark = Color(0xFF1E1E1E)
-val TrakifyOnSurfaceDark = Color(0xFFFFFFFF)
-val TrakifyOnBackgroundDark = Color(0xFFFFFFFF)
+val SurfaceDark = Color(0xFF121212)
+val BackgroundDark = Color(0xFF1E1E1E)
+val OnSurfaceDark = Color(0xFFFFFFFF)
+val OnBackgroundDark = Color(0xFFFFFFFF)
 
 // ☀️ Light Theme Colors
-val TrakifySurfaceLight = Color(0xFFFFFFFF)
-val TrakifyBackgroundLight = Color(0xFFF5F5F5)
-val TrakifyOnSurfaceLight = Color(0xFF000000)
-val TrakifyOnBackgroundLight = Color(0xFF000000)
+val SurfaceLight = Color(0xFFFFFFFF)
+val BackgroundLight = Color(0xFFF5F5F5)
+val OnSurfaceLight = Color(0xFF000000)
+val OnBackgroundLight = Color(0xFF000000)
 
 // 🔘 State Colors
 val DisabledColor = Color(0xFF9E9E9E)
