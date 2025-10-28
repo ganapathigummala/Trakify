@@ -19,6 +19,7 @@ kotlinxCoroutinesAndroid = "1.7.3"
 androidSvg = "1.4"
 ui = "1.9.4"
 foundation = "1.9.4"
+material3 = "1.4.0"
 
 [libraries]
 android-svg = { module = "com.caverock:androidsvg", version.ref = "androidSvg" }
@@ -47,6 +48,7 @@ androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-te
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "ui" }
 androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "foundation" }
+androidx-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "material3" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
