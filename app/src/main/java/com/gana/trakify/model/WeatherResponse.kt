@@ -4,14 +4,18 @@ data class WeatherResponse(
     var name: String,
     val main: Main,
     val weather: List<Weather>,
-    val wind: Wind
+    val wind: Wind,
+    val visibility: Long
+
 )
 
 data class Main(
     val temp: Double,
     val humidity: Int,
     val pressure: Double,
-    val feels_like: Double
+    val feels_like: Double,
+    val temp_min: Double,
+    val temp_max: Double
 )
 
 data class Weather(

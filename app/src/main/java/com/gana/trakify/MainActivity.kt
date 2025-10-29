@@ -9,14 +9,20 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.Preview
@@ -25,10 +31,12 @@ import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
 import com.gana.trakify.ResourceState.ResourceState
 import com.gana.trakify.model.WeatherResponse
+import com.gana.trakify.ui.theme.Green100
 import com.gana.trakify.ui.theme.TrakifyTheme
 import com.gana.trakify.ui.theme.White
 import com.gana.trakify.viewmodel.WeatherViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.text.toDouble
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -62,7 +70,6 @@ class MainActivity : ComponentActivity() {
 
     override fun onStart() {
         super.onStart()
-        weatherViewModel.getWeather("Andhra pradhesh")
     }
 
     override fun onResume() {
@@ -112,13 +119,15 @@ fun WeatherAppContent(
 }
 @Composable
 fun InputField(weatherViewModel: WeatherViewModel) {
-    val textState = rememberTextFieldState()
+    var textState by remember { mutableStateOf("Bangalore") }
 
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.padding(16.dp)
     ) {
         OutlinedTextField(
-            state = textState,
+            value = textState,
+            onValueChange = { textState = it },
             label = { Text("Location") },
             modifier = Modifier.fillMaxWidth()
         )
@@ -127,7 +136,7 @@ fun InputField(weatherViewModel: WeatherViewModel) {
 
         Button(
             onClick = {
-                val city = textState.text.toString().trim()
+                val city = textState.trim()
                 if (city.isNotEmpty()) {
                     weatherViewModel.getWeather(city)
                 }
@@ -139,6 +148,7 @@ fun InputField(weatherViewModel: WeatherViewModel) {
 }
 
 
+
 // Rest of your composable functions remain the same...
 @Composable
 fun GridTempCards(response: WeatherResponse) {
@@ -146,25 +156,29 @@ fun GridTempCards(response: WeatherResponse) {
         modifier = Modifier
             .fillMaxSize()
             .padding(8.dp),
-        verticalArrangement = Arrangement.Top,
+        verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         TempCard(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(400.dp)
+                .height(300.dp),
+            response
         )
         Spacer(modifier = Modifier.height(16.dp))
-        ChildTempCards()
+
+        ChildTempCards(response.main.humidity.toDouble(), "Humidity", response.wind.speed,"Wind")
+
+        ChildTempCards(response.visibility.toDouble(), "Visibility", response.main.pressure,"Visibility")
     }
 }
 
 @Composable
-fun TempCard(modifier: Modifier = Modifier) {
+fun TempCard(modifier: Modifier = Modifier, response: WeatherResponse) {
     Column(
         modifier = modifier
             .clip(RoundedCornerShape(12.dp))
-            .background(MaterialTheme.colorScheme.primary)
+            .background(Green100)
             .padding(16.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
@@ -177,8 +191,8 @@ fun TempCard(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        Text("1°", color = White, fontStyle = FontStyle.Italic, fontSize = 32.sp)
-        Text("Snow", color = White, fontStyle = FontStyle.Italic, fontSize = 20.sp)
+        Text(text = "${response.main.temp}°", color = White, fontStyle = FontStyle.Italic, fontSize = 32.sp)
+        Text("${response.weather.get(0).main}", color = White, fontStyle = FontStyle.Italic, fontSize = 20.sp)
 
         Spacer(modifier = Modifier.height(12.dp))
 
@@ -186,9 +200,9 @@ fun TempCard(modifier: Modifier = Modifier) {
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            TempDetail("1°", "Feels")
-            TempDetail("5°", "Low")
-            TempDetail("8°", "High")
+            TempDetail("${response.main.feels_like}°", "Feels")
+            TempDetail("${response.main.temp_min}°", "Low")
+            TempDetail("${response.main.temp_max}°", "High")
         }
     }
 }
@@ -202,30 +216,41 @@ private fun TempDetail(value: String, label: String) {
 }
 
 @Composable
-fun ChildTempCards() {
+fun ChildTempCards(valueHumidity: Double,stringHumidity: String,valueWind: Double,stringWind: String) {
     Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceEvenly
+        modifier = Modifier.height(150.dp).fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceEvenly,
+        verticalAlignment = Alignment.CenterVertically
     ) {
-        SubTempCard()
-        SubTempCard()
-        SubTempCard()
+        SubTempCard(valueHumidity,stringHumidity)
+        SubTempCard(valueWind,stringWind)
+
     }
 }
 
 @Composable
-fun SubTempCard() {
+fun SubTempCard(value: Double, string: String) {
     Column(
         modifier = Modifier
             .clip(RoundedCornerShape(12.dp))
-            .size(width = 100.dp, height = 150.dp)
-            .background(MaterialTheme.colorScheme.primary)
-            .padding(vertical = 10.dp),
+            .width(150.dp)
+            .height( 100.dp)
+            .background(Green100),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text("20°", color = White, fontSize = 18.sp)
-        Text("Humidity", color = White, fontSize = 14.sp)
+        Text(
+            text = "${value}°",
+            color = Color.White,
+            fontSize = 18.sp
+        )
+        Spacer(modifier = Modifier.height(12.dp))
+
+        Text(
+            text = string,
+            color = Color.White,
+            fontSize = 14.sp
+        )
     }
 }
 
