@@ -15,7 +15,7 @@ class WeatherRepo @Inject constructor(private val weatherApi: WeatherApi) {
             val response = weatherApi.getWeather(
                 cityName = cityName,
                 units = "metric",
-                apiKey = com.gana.trakify.BuildConfig.API_KEY
+                apiKey = "2ed9eedfb7571cfc51d9f21c39c4dff1"
             )
             emit(ResourceState.Success(response))
         } catch (e: Exception) {
