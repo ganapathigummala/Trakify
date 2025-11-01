@@ -15,7 +15,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Trakify">
 
-        <!-- Launcher activity -->
+        <!-- ONLY ONE MainActivity as launcher -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Trakify">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Remove these activity declarations -->
+        <!--
+        <activity
+            android:name=".activity.RegistrationScreen"
+            android:exported="true" />
         <activity
             android:name=".activity.LoginActivity"
             android:exported="true">
@@ -25,11 +40,11 @@
             </intent-filter>
         </activity>
 
-        <!-- Other activities -->
         <activity
-            android:name=".MainActivity"
+            android:name=".MainScreen"
             android:exported="false"
             android:label="@string/app_name"
             android:theme="@style/Theme.Trakify" />
+        -->
     </application>
 </manifest>
