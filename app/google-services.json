@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "434440973537",
+    "project_id": "trakify-1e6cc",
+    "storage_bucket": "trakify-1e6cc.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:434440973537:android:f69e981b692d3b9d2bdba0",
+        "android_client_info": {
+          "package_name": "com.gana.trakify"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBKfl1R0LJkEyiuDeFkFwJJcjGnKJ5luo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
