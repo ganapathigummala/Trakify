@@ -28,6 +28,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             TrakifyTheme {
                 Surface(
+
                     modifier = Modifier.fillMaxSize()
                 ) {
                     val navController = rememberNavController()

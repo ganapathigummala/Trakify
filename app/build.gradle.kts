@@ -63,6 +63,8 @@ android {
 }
 
 dependencies {
+    implementation("io.coil-kt:coil-compose:2.4.0")
+
     // ✅ Firebase BoM (manages versions automatically)
     implementation(platform("com.google.firebase:firebase-bom:34.5.0"))
 
@@ -73,6 +75,7 @@ dependencies {
 
     // ✅ Hilt
     implementation(libs.hilt.android)
+    implementation(libs.androidx.compose.runtime)
     kapt(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
 

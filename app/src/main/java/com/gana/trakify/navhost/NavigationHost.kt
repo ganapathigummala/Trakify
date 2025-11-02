@@ -7,7 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.gana.trakify.activity.LoginScreen
 import com.gana.trakify.activity.RegistrationScreen
-import com.gana.trakify.components.MainContent  // Add this import
+import com.gana.trakify.activity.MainContent  // Add this import
 @Composable
 fun NavigationHost(
     navController: NavHostController,
