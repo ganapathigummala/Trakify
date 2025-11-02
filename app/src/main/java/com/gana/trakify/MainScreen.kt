@@ -1,4 +1,3 @@
-// MainActivity.kt
 package com.gana.trakify
 
 import android.os.Bundle
@@ -11,10 +10,13 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.gana.trakify.navhost.NavigationHost
 import com.gana.trakify.ui.theme.TrakifyTheme
+import com.gana.trakify.ui.theme.White
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     private lateinit var auth: FirebaseAuth
@@ -28,12 +30,11 @@ class MainActivity : ComponentActivity() {
         setContent {
             TrakifyTheme {
                 Surface(
-
-                    modifier = Modifier.fillMaxSize()
+                    modifier = Modifier.fillMaxSize(),
+                    color = White
                 ) {
                     val navController = rememberNavController()
 
-                    // Check if user is already logged in
                     val startDestination = if (auth.currentUser != null) {
                         "main_screen"
                     } else {

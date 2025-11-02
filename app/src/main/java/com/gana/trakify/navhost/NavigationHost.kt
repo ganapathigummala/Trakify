@@ -1,4 +1,3 @@
-// navhost/NavigationHost.kt
 package com.gana.trakify.navhost
 
 import androidx.compose.runtime.Composable
@@ -6,8 +5,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.gana.trakify.activity.LoginScreen
+import com.gana.trakify.screens.WeatherScreen
+import com.gana.trakify.activity.MainContent
 import com.gana.trakify.activity.RegistrationScreen
-import com.gana.trakify.activity.MainContent  // Add this import
+
 @Composable
 fun NavigationHost(
     navController: NavHostController,
@@ -47,6 +48,16 @@ fun NavigationHost(
                     navController.navigate(Screen.Login.route) {
                         popUpTo(Screen.Main.route) { inclusive = true }
                     }
+                },
+                onWeatherClick = {
+                    navController.navigate(Screen.Weather.route)
+                }
+            )
+        }
+        composable(Screen.Weather.route) {
+            WeatherScreen(
+                onBackClick = {
+                    navController.popBackStack()
                 }
             )
         }

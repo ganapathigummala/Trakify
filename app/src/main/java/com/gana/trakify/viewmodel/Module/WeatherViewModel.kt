@@ -18,13 +18,10 @@ class WeatherViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _weatherState = MutableStateFlow<ResourceState<WeatherResponse>?>(null)
-
     val weatherState: StateFlow<ResourceState<WeatherResponse>?> = _weatherState.asStateFlow()
-
 
     fun getWeather(cityName: String) {
         _weatherState.value = ResourceState.Loading()
-
         viewModelScope.launch {
             try {
                 weatherRepo.getWeather(cityName).collect { state ->
@@ -34,5 +31,9 @@ class WeatherViewModel @Inject constructor(
                 _weatherState.value = ResourceState.Error(e.message ?: "Unknown error")
             }
         }
+    }
+
+    fun clearWeatherState() {
+        _weatherState.value = null
     }
 }

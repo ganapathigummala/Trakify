@@ -20,6 +20,7 @@ import com.google.firebase.auth.auth
 @Composable
 fun MainContent(
     onLogout: () -> Unit = {},
+    onWeatherClick: () -> Unit = {},
     firebaseAuth: FirebaseAuth = Firebase.auth
 ) {
     val currentUser = firebaseAuth.currentUser
@@ -38,7 +39,6 @@ fun MainContent(
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // 🔹 Keep NavBarHome untouched
         NavBarHome(
             onMenuClick = { /* TODO: open drawer */ },
             onProfileClick = { showProfileDialog = true }
@@ -46,7 +46,6 @@ fun MainContent(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // 🔹 Grid layout for features
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
             contentPadding = PaddingValues(12.dp),
@@ -58,12 +57,16 @@ fun MainContent(
                 FeatureCard(
                     title = feature.title,
                     description = feature.description,
-                    onClick = { /* TODO: Navigate to feature */ }
+                    onClick = {
+                        when (feature.title) {
+                            "Weather" -> onWeatherClick()
+                            else -> { /* handle other features later */ }
+                        }
+                    }
                 )
             }
         }
 
-        // 🔹 Profile dialog
         if (showProfileDialog) {
             ProfileDialog(
                 firebaseAuth = firebaseAuth,
