@@ -21,6 +21,7 @@ import com.google.firebase.auth.auth
 fun MainContent(
     onLogout: () -> Unit = {},
     onWeatherClick: () -> Unit = {},
+    onSettingsClick: () -> Unit = {},
     firebaseAuth: FirebaseAuth = Firebase.auth
 ) {
     val currentUser = firebaseAuth.currentUser
@@ -31,7 +32,7 @@ fun MainContent(
         FeatureItemData("Weather", "Check current weather conditions"),
         FeatureItemData("Activity Log", "View your activity history"),
         FeatureItemData("Notifications", "Stay updated with alerts"),
-        FeatureItemData("Settings", "Customize your preferences")
+        FeatureItemData("Crashlytics", "Customize your preferences")
     )
 
     Column(
@@ -60,6 +61,7 @@ fun MainContent(
                     onClick = {
                         when (feature.title) {
                             "Weather" -> onWeatherClick()
+                            "Crashlytics" -> onSettingsClick()
                             else -> { /* handle other features later */ }
                         }
                     }

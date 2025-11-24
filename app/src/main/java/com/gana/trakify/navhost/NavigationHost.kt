@@ -8,6 +8,7 @@ import com.gana.trakify.activity.LoginScreen
 import com.gana.trakify.screens.WeatherScreen
 import com.gana.trakify.activity.MainContent
 import com.gana.trakify.activity.RegistrationScreen
+import com.gana.trakify.components.SettingsScreen
 
 @Composable
 fun NavigationHost(
@@ -51,11 +52,21 @@ fun NavigationHost(
                 },
                 onWeatherClick = {
                     navController.navigate(Screen.Weather.route)
+                },
+                onSettingsClick = {
+                    navController.navigate(Screen.Settings.route)
                 }
             )
         }
         composable(Screen.Weather.route) {
             WeatherScreen(
+                onBackClick = {
+                    navController.popBackStack()
+                }
+            )
+        }
+        composable(Screen.Settings.route) {
+            SettingsScreen(
                 onBackClick = {
                     navController.popBackStack()
                 }
