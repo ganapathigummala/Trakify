@@ -6,10 +6,9 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
-    id("com.google.gms.google-services") // ✅ Firebase plugin here
+    id("com.google.gms.google-services")
 }
 
-// 🔐 Load local.properties
 val localProperties = File(rootProject.rootDir, "local.properties").reader().use { reader ->
     Properties().apply { load(reader) }
 }

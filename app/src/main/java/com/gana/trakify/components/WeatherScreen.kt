@@ -254,11 +254,11 @@ fun SubTempCard(value: Double, string: String, unit: String = "") {
 
 private fun getWeatherIcon(weatherCondition: String): Int {
     return when (weatherCondition.toLowerCase()) {
-//        "clear" -> R.drawable.sunny
-//        "clouds" -> R.drawable.cloudy
-//        "rain" -> R.drawable.rain
+        "clear" -> R.drawable.snow
+        "clouds" -> R.drawable.snow
+        "rain" -> R.drawable.snow
         "snow" -> R.drawable.snow
-//        "thunderstorm" -> R.drawable.thunderstorm
+        "thunderstorm" -> R.drawable.snow
         else -> R.drawable.snow
     }
 }
