@@ -1,3 +1,4 @@
+// navhost/NavigationHost.kt
 package com.gana.trakify.navhost
 
 import androidx.compose.runtime.Composable
@@ -6,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.gana.trakify.activity.LoginScreen
 import com.gana.trakify.screens.WeatherScreen
+import com.gana.trakify.screens.LocationScreen
 import com.gana.trakify.activity.MainContent
 import com.gana.trakify.activity.RegistrationScreen
 import com.gana.trakify.components.SettingsScreen
@@ -31,6 +33,7 @@ fun NavigationHost(
                 }
             )
         }
+
         composable(Screen.Register.route) {
             RegistrationScreen(
                 onRegistrationSuccess = {
@@ -43,6 +46,8 @@ fun NavigationHost(
                 }
             )
         }
+
+        // THIS IS CRITICAL - Make sure Main route is defined
         composable(Screen.Main.route) {
             MainContent(
                 onLogout = {
@@ -53,11 +58,15 @@ fun NavigationHost(
                 onWeatherClick = {
                     navController.navigate(Screen.Weather.route)
                 },
+                onLocationClick = {
+                    navController.navigate(Screen.Location.route)
+                },
                 onSettingsClick = {
                     navController.navigate(Screen.Settings.route)
                 }
             )
         }
+
         composable(Screen.Weather.route) {
             WeatherScreen(
                 onBackClick = {
@@ -65,6 +74,15 @@ fun NavigationHost(
                 }
             )
         }
+
+        composable(Screen.Location.route) {
+            LocationScreen(
+                onBackClick = {
+                    navController.popBackStack()
+                }
+            )
+        }
+
         composable(Screen.Settings.route) {
             SettingsScreen(
                 onBackClick = {

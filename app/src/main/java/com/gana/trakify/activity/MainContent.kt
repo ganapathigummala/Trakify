@@ -1,3 +1,4 @@
+// activity/MainContent.kt
 package com.gana.trakify.activity
 
 import androidx.compose.foundation.layout.*
@@ -21,6 +22,7 @@ import com.google.firebase.auth.auth
 fun MainContent(
     onLogout: () -> Unit = {},
     onWeatherClick: () -> Unit = {},
+    onLocationClick: () -> Unit = {},  // Add this parameter
     onSettingsClick: () -> Unit = {},
     firebaseAuth: FirebaseAuth = Firebase.auth
 ) {
@@ -28,11 +30,11 @@ fun MainContent(
     var showProfileDialog by remember { mutableStateOf(false) }
 
     val features = listOf(
-        FeatureItemData("Location", "Track your location in real-time"),
+        FeatureItemData("Location Tracking", "Track and view your location history"),
         FeatureItemData("Weather", "Check current weather conditions"),
         FeatureItemData("Activity Log", "View your activity history"),
         FeatureItemData("Notifications", "Stay updated with alerts"),
-        FeatureItemData("Crashlytics", "Customize your preferences")
+        FeatureItemData("Settings", "Customize your preferences")
     )
 
     Column(
@@ -60,8 +62,9 @@ fun MainContent(
                     description = feature.description,
                     onClick = {
                         when (feature.title) {
+                            "Location Tracking" -> onLocationClick()
                             "Weather" -> onWeatherClick()
-                            "Crashlytics" -> onSettingsClick()
+                            "Settings" -> onSettingsClick()
                             else -> { /* handle other features later */ }
                         }
                     }

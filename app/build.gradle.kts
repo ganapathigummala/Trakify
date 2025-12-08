@@ -70,6 +70,10 @@ dependencies {
     // ✅ Firebase BoM (manages versions automatically)
     implementation(platform("com.google.firebase:firebase-bom:34.5.0"))
 
+    implementation("com.google.android.gms:play-services-location:21.2.0")
+    implementation("androidx.work:work-runtime-ktx:2.9.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.8.0")
+
     // ✅ Firebase SDKs
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-auth")
@@ -82,6 +86,7 @@ dependencies {
     // ✅ Hilt
     implementation(libs.hilt.android)
     implementation(libs.androidx.compose.runtime)
+    implementation(libs.androidx.compose.material)
     kapt(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
 

@@ -12,9 +12,7 @@ import com.gana.trakify.navhost.NavigationHost
 import com.gana.trakify.navhost.Screen
 import com.gana.trakify.ui.theme.TrakifyTheme
 import com.gana.trakify.ui.theme.White
-import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.auth
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
